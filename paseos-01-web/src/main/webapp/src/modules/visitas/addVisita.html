@@ -1,0 +1,25 @@
+
+<h1 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Inscribir una Oferta:</h1>  
+
+ <form class="form-horizontal">
+    <div class="form-group"></div>
+    <label class="control-label col-sm-3" >Oferta:</label>
+         <div class="col-sm-7"> 
+            <select class="form-control" ng-model="visitaElegida">
+                <option ng-repeat="visita in catalogo" value="{{visita.id}}">{{visita.comentario}} - {{visita.calificacion}}</option>            
+            </select>
+      </div>
+    <br>
+    <br>
+    <label class="control-label col-sm-3" >Usuario:</label>
+         <div class="col-sm-7"> 
+            <select class="form-control" ng-model="usuarioElegido">
+                <option ng-repeat="usuario in usuarios" value="{{usuario.id}}">{{usuario.login}} - {{usuario.nombre}}</option>            
+            </select>
+      </div>
+    <br>
+    <br>
+  <div class="form-group" style="text-align:center;">
+  <button class="btn btn-default" ng-click="ok()">Submit</button>
+  </div>
+</form>

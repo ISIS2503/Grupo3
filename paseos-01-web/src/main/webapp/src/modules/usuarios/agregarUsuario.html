@@ -1,0 +1,37 @@
+
+<h1 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Agregar un Usuario</h1>  
+        
+ <form class="form-horizontal">
+    <div class="form-group"></div>
+    <label class="control-label col-sm-3" >Login</label>
+         <div class="col-sm-7"> 
+            <input type="String" class="form-control" ng-model="loginElegido">  
+      </div>
+    <br>
+    <br>
+   <label class="control-label col-sm-3" >nombres</label>
+         <div class="col-sm-7"> 
+            <input type="String" class="form-control" ng-model="nombresElegido">  
+      </div>
+    <br>
+    <br>
+    <label class="control-label col-sm-3" >apellidos</label>
+         <div class="col-sm-7"> 
+            <input type="String" class="form-control" ng-model="apellidosElegido">  
+      </div>
+    <br>
+   
+    <label class="control-label col-sm-3" >Fecha de nacimiento</label>
+         <div class="col-sm-7"> 
+            <input type="date" class="form-control" ng-model="fechaNacimientoElegido">  
+      </div>
+    <label class="control-label col-sm-3" >Guia?</label>
+         <div class="col-sm-7"> 
+            <input type="checkbox" class="form-control" ng-model="guiaElegido">  
+      </div>
+    <br>
+    <br>
+  <div class="form-group" style="text-align:center;">
+  <button class="btn btn-default" ng-click="saveUsuario()">Submit</button>
+  </div>
+</form>
