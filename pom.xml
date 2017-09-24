@@ -44,6 +44,11 @@
             <scope>test</scope> 
         </dependency>
         <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.11</artifactId>
+            <version>0.11.0.1</version>
+        </dependency>
+        <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
             <scope>test</scope>
