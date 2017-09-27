@@ -34,16 +34,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class RealTimeDataDTO {
     private String id;
     private Date samplingTime;
-    private double dataValue;
+    private double promTemp;
+    private double promCo2;
+    private double promSon;
+    private double promLuz;
+    
+
     private String idSensor;
 
     public RealTimeDataDTO() {
     }
 
-    public RealTimeDataDTO(String id, Date date, double dataValue, String idSensor) {
+    public RealTimeDataDTO(String id, Date date, double promTemp,double promCo2,double promSon,double promLuz, String idSensor){
         this.id = id;
         this.samplingTime = date;
-        this.dataValue = dataValue;
+        this.promTemp = promTemp;
+        this.promCo2  = promCo2;
+        this.promSon  = promSon;
+        this.promLuz  = promLuz;
         this.idSensor = idSensor;
     }
 
@@ -63,13 +71,39 @@ public class RealTimeDataDTO {
         this.samplingTime = samplingTime;
     }
 
-    public double getDataValue() {
-        return dataValue;
+    public double getPromTemp() {
+        return promTemp;
     }
 
-    public void setDataValue(double dataValue) {
-        this.dataValue = dataValue;
+    public void setPromTemp(double promTemp) {
+        this.promTemp = promTemp;
     }
+
+    public double getPromCo2() {
+        return promCo2;
+    }
+
+    public void setPromCo2(double promCo2) {
+        this.promCo2 = promCo2;
+    }
+
+    public double getPromSon() {
+        return promSon;
+    }
+
+    public void setPromSon(double promSon) {
+        this.promSon = promSon;
+    }
+
+    public double getPromLuz() {
+        return promLuz;
+    }
+
+    public void setPromLuz(double promLuz) {
+        this.promLuz = promLuz;
+    }
+
+   
 
     public String getIdSensor() {
         return idSensor;

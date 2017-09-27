@@ -44,7 +44,13 @@ public class RealTimeDataConverter implements IRealTimeDataConverter {
     public RealTimeDataDTO entityToDto(RealTimeDataEntity entity) {
         RealTimeDataDTO dto = new RealTimeDataDTO();
         dto.setId(entity.getId());
-        dto.setDataValue(entity.getDataValue());
+        dto.setPromCo2(entity.getPromCo2());
+        dto.setPromLuz(entity.getPromLuz());
+        dto.setPromSon(entity.getPromSon());
+        dto.setPromTemp(entity.getPromTemp());
+        
+        
+        
         dto.setIdSensor(entity.getIdSensor());
         dto.setSamplingTime(entity.getSamplingTime());
         return dto;
@@ -54,7 +60,10 @@ public class RealTimeDataConverter implements IRealTimeDataConverter {
     public RealTimeDataEntity dtoToEntity(RealTimeDataDTO dto) {
         RealTimeDataEntity entity = new RealTimeDataEntity();
         entity.setId(dto.getId());
-        entity.setDataValue(dto.getDataValue());
+        entity.setPromCo2(dto.getPromCo2());
+        entity.setPromLuz(dto.getPromLuz());
+        entity.setPromSon(dto.getPromSon());
+        entity.setPromTemp(dto.getPromTemp());
         entity.setIdSensor(dto.getIdSensor());
         entity.setSamplingTime(dto.getSamplingTime());
         return entity;
