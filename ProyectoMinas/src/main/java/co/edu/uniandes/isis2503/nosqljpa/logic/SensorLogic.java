@@ -37,9 +37,11 @@ import java.util.UUID;
 public class SensorLogic implements ISensorLogic {
 
     private final SensorPersistence persistence;
+    private static Singleton singleton;
 
     public SensorLogic() {
         this.persistence = new SensorPersistence();
+        singleton = singleton.getInstance();
     }
 
     @Override
@@ -48,6 +50,7 @@ public class SensorLogic implements ISensorLogic {
             dto.setId(UUID.randomUUID().toString());
         }
         SensorDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
+        singleton.agregarSensor(result);
         return result;
     }
 
