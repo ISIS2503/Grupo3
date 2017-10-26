@@ -27,42 +27,47 @@ package co.edu.uniandes.isis2503.nosqljpa.logic;
  *
  * @author alejandro
  */
-public class AlertaActuadorIneficiente {
-    
-    private int idSensor;
-    
-    private String zonaSensor;
-    
-    private String mensaje;
-    
-    private Long tiempo;
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
 
-    public AlertaActuadorIneficiente(int idSensor, String zonaSensor) {
-        tiempo = System.currentTimeMillis();
-        this.idSensor = idSensor;
-        this.zonaSensor = zonaSensor;
-        mensaje = "el sensor con id: "+idSensor+" detecto un actuador ineficiente y se encuentra en la zona: " +zonaSensor;
-        System.out.println(mensaje);
-        enviarCorreo();
-    }
-    
-    public Long getTiempo() {
-        return tiempo;
-    }
+public class Correo {
 
-    public String getIdSensor() {
-        return ""+idSensor;
-    }
+	public Correo(String mensaje) {
 
-    public String getZonaSensor() {
-        return zonaSensor;
-    }
+		final String username = "alejandrogf95@gmail.com";
+		final String password = "Ka";
 
-    public String getMensaje() {
-        return mensaje;
-    }    
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
 
-    private void enviarCorreo() {
-        new Correo(mensaje);
-    }
-}  
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("alejandrogf95@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse("alejandrogf95@gmail.com"));
+			message.setSubject("Alerta");
+			message.setText(mensaje);
+
+			Transport.send(message);
+
+			System.out.println("Done");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+}
+

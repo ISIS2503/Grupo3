@@ -65,6 +65,6 @@ class AlertaFueraDeLinea {
     }    
 
     private void enviarCorreo() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        new Correo(mensaje);
     }
 }
