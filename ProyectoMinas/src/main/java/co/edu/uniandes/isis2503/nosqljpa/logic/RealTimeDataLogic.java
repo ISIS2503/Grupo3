@@ -28,6 +28,7 @@ import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RealTimeDataDTO;
 import co.edu.uniandes.isis2503.nosqljpa.persistence.RealTimeDataPersistence;
 import java.util.List;
 import java.util.UUID;
+import javax.ejb.EJB;
 
 /**
  *
@@ -36,7 +37,8 @@ import java.util.UUID;
 public class RealTimeDataLogic implements IRealTimeDataLogic {
 
     private final RealTimeDataPersistence persistence;
-    private static Singleton singleton;
+    @EJB
+    private SingletonData singleton;
     
     private double LimiteInfGas;
     private double LimiteSupGas;
@@ -52,7 +54,14 @@ public class RealTimeDataLogic implements IRealTimeDataLogic {
 
     public RealTimeDataLogic() {
         this.persistence = new RealTimeDataPersistence();
-        singleton = singleton.getInstance();
+        this.singleton = new SingletonData();
+    }
+
+    @Override
+    public RealTimeDataDTO add(RealTimeDataDTO dto) {
+        if (dto.getId() == null) {
+            dto.setId(UUID.randomUUID().toString());
+        }
         this.LimiteInfLuz=singleton.getLimiteInfLuz();
         this.LimiteInfRuido=singleton.getLimiteInfRuido();
         this.LimiteInfGas=singleton.getLimiteInfGas();
@@ -61,20 +70,7 @@ public class RealTimeDataLogic implements IRealTimeDataLogic {
         this.LimiteSupRuido=singleton.getLimiteSupRuido();
         this.LimiteSupGas=singleton.getLimiteSupGas();
         this.LimiteSupTemp=singleton.getLimiteSupTemp();
-    }
-
-    @Override
-    public RealTimeDataDTO add(RealTimeDataDTO dto) {
-        if (dto.getId() == null) {
-            dto.setId(UUID.randomUUID().toString());
-        }
         RealTimeDataDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
-        return result;
-    }
-
-    @Override
-    public RealTimeDataDTO update(RealTimeDataDTO dto) {
-        RealTimeDataDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
         singleton.ActualizarTiempo(dto.getIdSensor(), dto.getSamplingTime());
         if(dto.getPromCo2()<LimiteInfGas||dto.getPromCo2()>LimiteSupGas){
             singleton.agregarAlertaRango(dto);
@@ -88,6 +84,12 @@ public class RealTimeDataLogic implements IRealTimeDataLogic {
         if(dto.getPromTemp()<LimiteInfTemp||dto.getPromTemp()>LimiteSupTemp){
             singleton.agregarAlertaRango(dto);
         }
+        return result;
+    }
+
+    @Override
+    public RealTimeDataDTO update(RealTimeDataDTO dto) {
+        RealTimeDataDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
         return result;
     }
 

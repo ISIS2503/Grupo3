@@ -80,4 +80,8 @@ public class AlertaFueraDeRango {
     private void ActivarActuador() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    void reset() {
+        numeroDeActivaciones=0;
+    }
 }
