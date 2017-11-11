@@ -29,6 +29,7 @@ import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.SensorDTO;
 import co.edu.uniandes.isis2503.nosqljpa.persistence.SensorPersistence;
 import java.util.List;
 import java.util.UUID;
+import javax.ejb.EJB;
 
 /**
  *
@@ -37,11 +38,12 @@ import java.util.UUID;
 public class SensorLogic implements ISensorLogic {
 
     private final SensorPersistence persistence;
-    private static Singleton singleton;
+   // @EJB
+    //private SingletonData singleton;
 
     public SensorLogic() {
         this.persistence = new SensorPersistence();
-        singleton = singleton.getInstance();
+        //this.singleton = new SingletonData();
     }
 
     @Override
@@ -50,7 +52,7 @@ public class SensorLogic implements ISensorLogic {
             dto.setId(UUID.randomUUID().toString());
         }
         SensorDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
-        singleton.agregarSensor(result);
+       // singleton.agregarSensor(result);
         return result;
     }
 
