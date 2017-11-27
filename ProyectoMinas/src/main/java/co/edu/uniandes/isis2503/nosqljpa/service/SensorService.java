@@ -23,6 +23,8 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.service;
 
+import co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter.Role;
+import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IMeasurementLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.ISensorLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IRealTimeDataLogic;
@@ -50,6 +52,7 @@ import javax.ws.rs.core.Response;
  * @author ca.mendoza968
  */
 @Path("/sensors")
+@Secured({Role.admin})
 @Produces(MediaType.APPLICATION_JSON)
 public class SensorService {
     private final ISensorLogic sensorLogic;

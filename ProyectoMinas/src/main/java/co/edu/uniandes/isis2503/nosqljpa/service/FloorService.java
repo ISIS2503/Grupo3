@@ -23,6 +23,8 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.service;
 
+import co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter;
+import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IFloorLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IRoomLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.FloorLogic;
@@ -47,6 +49,7 @@ import javax.ws.rs.core.Response;
  * @author ca.mendoza968
  */
 @Path("/floors")
+//@Secured({AuthorizationFilter.Role.admin})
 @Produces(MediaType.APPLICATION_JSON)
 public class FloorService {
 

@@ -109,7 +109,9 @@ public class SingletonData{
         long tiempoActual = System.currentTimeMillis();
         List<SensorDTO> dtos = sensorLogic.all();
         for(SensorDTO x: dtos){
+            //prev
             int id = Integer.parseInt(x.getId());
+            
             sensorzona[id] = x.getCode();
             sensortime[id] =  tiempoActual;
         }

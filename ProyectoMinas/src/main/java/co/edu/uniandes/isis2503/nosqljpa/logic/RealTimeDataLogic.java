@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 package co.edu.uniandes.isis2503.nosqljpa.logic;
+import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IRealTimeDataLogic;
 import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.RealTimeDataConverter.CONVERTER;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RealTimeDataDTO;
@@ -34,6 +35,7 @@ import javax.ejb.EJB;
  *
  * @author ca.mendoza968
  */
+
 public class RealTimeDataLogic implements IRealTimeDataLogic {
 
     private final RealTimeDataPersistence persistence;
@@ -54,7 +56,7 @@ public class RealTimeDataLogic implements IRealTimeDataLogic {
 
     public RealTimeDataLogic() {
         this.persistence = new RealTimeDataPersistence();
-        this.singleton = new SingletonData();
+       // this.singleton = new SingletonData();
     }
 
     @Override
