@@ -23,54 +23,61 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.model.dto.converter;
 
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IMeasurementConverter;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.MeasurementDTO;
-import co.edu.uniandes.isis2503.nosqljpa.model.entity.MeasurementEntity;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.ILimitsConverter;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.LimitsDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.LimitsEntity;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author ca.mendoza968
+ * @author a.garcia13
  */
-public class MeasurementConverter implements IMeasurementConverter {
+public class LimitsConverter implements ILimitsConverter{
+    
+    public static ILimitsConverter CONVERTER = new LimitsConverter();
 
-    public static IMeasurementConverter CONVERTER = new MeasurementConverter();
-
-    public MeasurementConverter() {
+    public LimitsConverter(){
+        
     }
 
     @Override
-    public MeasurementDTO entityToDto(MeasurementEntity entity) {
-        MeasurementDTO dto = new MeasurementDTO();
-        dto.setId(entity.getId());
-        dto.setName(entity.getName());
-        dto.setUnit(entity.getUnit());
+    public LimitsDTO entityToDto(LimitsEntity entity) {
+        LimitsDTO dto = new LimitsDTO();
+        dto.setTipo(entity.getTipo());
+        dto.setValorMax(entity.getValorMax());
+        dto.setValorMin(entity.getValorMin());
+        dto.setVarDiaria(entity.getVarDiaria());
+        dto.setLimiteInf(entity.getLimiteInf());
+        dto.setLimiteSup(entity.getLimiteSup());
         return dto;
     }
 
     @Override
-    public MeasurementEntity dtoToEntity(MeasurementDTO dto) {
-        MeasurementEntity entity = new MeasurementEntity();
-        entity.setId(dto.getId());
-        entity.setName(dto.getName());
-        entity.setUnit(dto.getUnit());
+    public LimitsEntity dtoToEntity(LimitsDTO dto) {
+        LimitsEntity entity = new LimitsEntity();
+        entity.setTipo(dto.getTipo());
+        entity.setValorMax(dto.getValorMax());
+        entity.setValorMin(dto.getValorMin());
+        entity.setVarDiaria(dto.getVarDiaria());
+        entity.setLimiteInf(dto.getLimiteInf());
+        entity.setLimiteSup(dto.getLimiteSup());
         return entity;
     }
 
     @Override
-    public List<MeasurementDTO> listEntitiesToListDTOs(List<MeasurementEntity> entities) {
-        ArrayList<MeasurementDTO> dtos = new ArrayList<>();
-        for (MeasurementEntity entity : entities) {
+    public List<LimitsDTO> listEntitiesToListDTOs(List<LimitsEntity> entities) {
+        ArrayList<LimitsDTO> dtos = new ArrayList<>();
+        for (LimitsEntity entity : entities) {
             dtos.add(entityToDto(entity));
         }
         return dtos;
     }
 
     @Override
-    public List<MeasurementEntity> listDTOsToListEntities(List<MeasurementDTO> dtos) {
-        ArrayList<MeasurementEntity> entities = new ArrayList<>();
-        for (MeasurementDTO dto : dtos) {
+    public List<LimitsEntity> listDTOsToListEntities(List<LimitsDTO> dtos) {
+        ArrayList<LimitsEntity> entities = new ArrayList<>();
+        for (LimitsDTO dto : dtos) {
             entities.add(dtoToEntity(dto));
         }
         return entities;
