@@ -46,6 +46,8 @@ public class MeasurementConverter implements IMeasurementConverter {
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setUnit(entity.getUnit());
+        dto.setLimiteInf(entity.getLimiteInf());
+        dto.setLimiteSup(entity.getLimiteSup());
         return dto;
     }
 
@@ -55,6 +57,8 @@ public class MeasurementConverter implements IMeasurementConverter {
         entity.setId(dto.getId());
         entity.setName(dto.getName());
         entity.setUnit(dto.getUnit());
+        entity.setLimiteInf(dto.getLimiteInf());
+        entity.setLimiteSup(dto.getLimiteSup());
         return entity;
     }
 

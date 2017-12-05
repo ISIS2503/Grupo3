@@ -23,10 +23,10 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.logic;
 
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IFloorLogic;
-import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.FloorConverter.CONVERTER;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.FloorDTO;
-import co.edu.uniandes.isis2503.nosqljpa.persistence.FloorPersistence;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IAreaLogic;
+import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.AreaConverter.CONVERTER;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AreaDTO;
+import co.edu.uniandes.isis2503.nosqljpa.persistence.AreaPersistence;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,46 +34,45 @@ import java.util.UUID;
  *
  * @author ca.mendoza968
  */
-public class FloorLogic implements IFloorLogic{
-    
-    private final FloorPersistence persistence;
+public class AreaLogic implements IAreaLogic {
+    private final AreaPersistence persistence;
 
-    public FloorLogic() {
-        this.persistence = new FloorPersistence();
+    public AreaLogic() {
+        this.persistence = new AreaPersistence();
     }
 
     @Override
-    public FloorDTO add(FloorDTO dto) {
+    public AreaDTO add(AreaDTO dto) {
          if(dto.getId()==null){
             dto.setId(UUID.randomUUID().toString());
          }
-        FloorDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
+        AreaDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
         return result;
     }
 
     @Override
-    public FloorDTO update(FloorDTO dto) {
-        FloorDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
+    public AreaDTO update(AreaDTO dto) {
+        AreaDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
         return result;
     }
 
     @Override
-    public FloorDTO find(String id) {
+    public AreaDTO find(String id) {
         return CONVERTER.entityToDto(persistence.find(id));
     }
-    
-    @Override
-    public FloorDTO findCode(String code) {
-        return CONVERTER.entityToDto(persistence.findCode(code));
-    }
 
     @Override
-    public List<FloorDTO> all() {
+    public List<AreaDTO> all() {
         return CONVERTER.listEntitiesToListDTOs(persistence.all());
     }
 
     @Override
     public Boolean delete(String id) {
         return persistence.delete(id);
+    }
+
+    @Override
+    public AreaDTO findCode(String code) {
+        return CONVERTER.entityToDto(persistence.findCode(code));
     }
 }

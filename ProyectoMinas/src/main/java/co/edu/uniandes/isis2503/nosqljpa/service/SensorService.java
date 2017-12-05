@@ -97,6 +97,17 @@ public class SensorService {
         sensorLogic.update(sensor);
         return result;
     }
+    
+    @PUT
+    @Path("{code}/limits")
+    public MeasurementDTO updateMeasurement(@PathParam("code") String code, MeasurementDTO dto) {
+        SensorDTO sensor = sensorLogic.findCode(code);
+        MeasurementDTO result = measurementLogic.update(dto);
+        sensor.updateMeasurement(dto.getId());
+        sensorLogic.update(sensor);
+        return result;
+    } 
+    
 
     @PUT
     public SensorDTO update(SensorDTO dto) {

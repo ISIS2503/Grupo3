@@ -23,10 +23,10 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.logic;
 
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IRoomLogic;
-import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.RoomConverter.CONVERTER;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RoomDTO;
-import co.edu.uniandes.isis2503.nosqljpa.persistence.RoomPersistence;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.INivelLogic;
+import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.NivelConverter.CONVERTER;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.NivelDTO;
+import co.edu.uniandes.isis2503.nosqljpa.persistence.NivelPersistence;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,45 +34,46 @@ import java.util.UUID;
  *
  * @author ca.mendoza968
  */
-public class RoomLogic implements IRoomLogic {
-    private final RoomPersistence persistence;
+public class NivelLogic implements INivelLogic{
+    
+    private final NivelPersistence persistence;
 
-    public RoomLogic() {
-        this.persistence = new RoomPersistence();
+    public NivelLogic() {
+        this.persistence = new NivelPersistence();
     }
 
     @Override
-    public RoomDTO add(RoomDTO dto) {
+    public NivelDTO add(NivelDTO dto) {
          if(dto.getId()==null){
             dto.setId(UUID.randomUUID().toString());
          }
-        RoomDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
+        NivelDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
         return result;
     }
 
     @Override
-    public RoomDTO update(RoomDTO dto) {
-        RoomDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
+    public NivelDTO update(NivelDTO dto) {
+        NivelDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
         return result;
     }
 
     @Override
-    public RoomDTO find(String id) {
+    public NivelDTO find(String id) {
         return CONVERTER.entityToDto(persistence.find(id));
     }
+    
+    @Override
+    public NivelDTO findCode(String code) {
+        return CONVERTER.entityToDto(persistence.findCode(code));
+    }
 
     @Override
-    public List<RoomDTO> all() {
+    public List<NivelDTO> all() {
         return CONVERTER.listEntitiesToListDTOs(persistence.all());
     }
 
     @Override
     public Boolean delete(String id) {
         return persistence.delete(id);
-    }
-
-    @Override
-    public RoomDTO findCode(String code) {
-        return CONVERTER.entityToDto(persistence.findCode(code));
     }
 }

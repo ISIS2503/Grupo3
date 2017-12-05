@@ -39,21 +39,7 @@ import javax.ejb.EJB;
 public class RealTimeDataLogic implements IRealTimeDataLogic {
 
     private final RealTimeDataPersistence persistence;
-    @EJB
-    private SingletonData singleton;
     
-    private double LimiteInfGas;
-    private double LimiteSupGas;
-    
-    private double LimiteInfTemp;
-    private double LimiteSupTemp;
-    
-    private double LimiteInfLuz;
-    private double LimiteSupLuz;
-    
-    private double LimiteInfRuido; 
-    private double LimiteSupRuido;
-
     public RealTimeDataLogic() {
         this.persistence = new RealTimeDataPersistence();
        // this.singleton = new SingletonData();
@@ -64,28 +50,7 @@ public class RealTimeDataLogic implements IRealTimeDataLogic {
         if (dto.getId() == null) {
             dto.setId(UUID.randomUUID().toString());
         }
-        this.LimiteInfLuz=singleton.getLimiteInfLuz();
-        this.LimiteInfRuido=singleton.getLimiteInfRuido();
-        this.LimiteInfGas=singleton.getLimiteInfGas();
-        this.LimiteInfTemp=singleton.getLimiteInfTemp();
-        this.LimiteSupLuz=singleton.getLimiteSupLuz();
-        this.LimiteSupRuido=singleton.getLimiteSupRuido();
-        this.LimiteSupGas=singleton.getLimiteSupGas();
-        this.LimiteSupTemp=singleton.getLimiteSupTemp();
         RealTimeDataDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
-        singleton.ActualizarTiempo(dto.getIdSensor(), dto.getSamplingTime());
-        if(dto.getPromCo2()<LimiteInfGas||dto.getPromCo2()>LimiteSupGas){
-            singleton.agregarAlertaRango(dto);
-        }
-        if(dto.getPromLuz()<LimiteInfLuz||dto.getPromLuz()>LimiteSupLuz){
-            singleton.agregarAlertaRango(dto);
-        }
-        if(dto.getPromSon()<LimiteInfRuido||dto.getPromSon()>LimiteSupRuido){
-            singleton.agregarAlertaRango(dto);
-        }
-        if(dto.getPromTemp()<LimiteInfTemp||dto.getPromTemp()>LimiteSupTemp){
-            singleton.agregarAlertaRango(dto);
-        }
         return result;
     }
 

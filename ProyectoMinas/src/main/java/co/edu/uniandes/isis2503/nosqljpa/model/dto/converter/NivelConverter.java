@@ -23,9 +23,9 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.model.dto.converter;
 
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IRoomConverter;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RoomDTO;
-import co.edu.uniandes.isis2503.nosqljpa.model.entity.RoomEntity;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.INivelConverter;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.NivelDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.NivelEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,51 +33,48 @@ import java.util.List;
  *
  * @author ca.mendoza968
  */
-public class RoomConverter implements IRoomConverter {
+public class NivelConverter implements INivelConverter {
 
-    public static IRoomConverter CONVERTER = new RoomConverter();
+    public static INivelConverter CONVERTER = new NivelConverter();
 
-    public RoomConverter() {
+    public NivelConverter() {
     }
 
     @Override
-    public RoomDTO entityToDto(RoomEntity entity) {
-        RoomDTO dto = new RoomDTO();
+    public NivelDTO entityToDto(NivelEntity entity) {
+        NivelDTO dto = new NivelDTO();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setCode(entity.getCode());
-        dto.setConsolidatedData(entity.getConsolidatedData());
-        dto.setSensors(entity.getSensors());
+        dto.setRooms(entity.getRooms());
         return dto;
     }
 
     @Override
-    public RoomEntity dtoToEntity(RoomDTO dto) {
-        RoomEntity entity = new RoomEntity();
+    public NivelEntity dtoToEntity(NivelDTO dto) {
+        NivelEntity entity = new NivelEntity();
         entity.setId(dto.getId());
         entity.setName(dto.getName());
         entity.setCode(dto.getCode());
-        entity.setSensors(dto.getSensors());
-        entity.setConsolidatedData(dto.getConsolidatedData());
+        entity.setRooms(dto.getRooms());
         return entity;
     }
 
     @Override
-    public List<RoomDTO> listEntitiesToListDTOs(List<RoomEntity> entities) {
-        ArrayList<RoomDTO> dtos = new ArrayList<>();
-        for (RoomEntity entity : entities) {
+    public List<NivelDTO> listEntitiesToListDTOs(List<NivelEntity> entities) {
+        ArrayList<NivelDTO> dtos = new ArrayList<>();
+        for (NivelEntity entity : entities) {
             dtos.add(entityToDto(entity));
         }
         return dtos;
     }
 
     @Override
-    public List<RoomEntity> listDTOsToListEntities(List<RoomDTO> dtos) {
-        ArrayList<RoomEntity> entities = new ArrayList<>();
-        for (RoomDTO dto : dtos) {
+    public List<NivelEntity> listDTOsToListEntities(List<NivelDTO> dtos) {
+        ArrayList<NivelEntity> entities = new ArrayList<>();
+        for (NivelDTO dto : dtos) {
             entities.add(dtoToEntity(dto));
         }
         return entities;
     }
-
 }

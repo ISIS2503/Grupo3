@@ -21,32 +21,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.nosqljpa.model.dto.model;
+package co.edu.uniandes.isis2503.nosqljpa.model.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.annotations.DynamicUpdate;
 
 /**
  *
  * @author ca.mendoza968
  */
-@XmlRootElement
-public class FloorDTO {
-    private String id;
-    private String name;
-    private String code;
-    private List<String> rooms;
+@Entity
+@Table(name = "AREA")
+public class AreaEntity implements Serializable {
 
-    public FloorDTO() {
-        this.rooms = new ArrayList();
+    @Id
+    private String id;
+
+    private String name;
+    
+    private String code;
+
+    @ElementCollection
+    private List<String> consolidatedData;
+
+    @ElementCollection
+    private List<String> sensors;
+
+    public AreaEntity() {
+        consolidatedData = new ArrayList();
+        sensors =  new ArrayList();
     }
 
-    public FloorDTO(String id, String name, String code, List<String> rooms) {
+    public AreaEntity(String id, String name, String code, List<String> consolidatedData, List<String> sensors) {
         this.id = id;
         this.name = name;
         this.code = code;
-        this.rooms = rooms;
+        this.consolidatedData = consolidatedData;
+        this.sensors = sensors;
     }
 
     public String getCode() {
@@ -55,14 +72,6 @@ public class FloorDTO {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
     
     public String getId() {
@@ -73,15 +82,29 @@ public class FloorDTO {
         this.id = id;
     }
 
-    public List<String> getRooms() {
-        return rooms;
+    public String getName() {
+        return name;
     }
 
-    public void setRooms(List<String> rooms) {
-        this.rooms = rooms;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<String> getConsolidatedData() {
+        return consolidatedData;
+    }
+
+    public void setConsolidatedData(List<String> consolidatedData) {
+        this.consolidatedData = consolidatedData;
+    }
+
+    public List<String> getSensors() {
+        return sensors;
+    }
+
+    public void setSensors(List<String> sensors) {
+        this.sensors = sensors;
     }
     
-    public void addRoom(String id) {
-        this.rooms.add(id);
-    }
+    
 }

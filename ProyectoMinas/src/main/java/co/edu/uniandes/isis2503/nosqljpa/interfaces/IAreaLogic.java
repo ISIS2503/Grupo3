@@ -23,18 +23,18 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.interfaces;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RoomDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AreaDTO;
 import java.util.List;
 
 /**
  *
  * @author ca.mendoza968
  */
-public interface IRoomLogic {
-    public RoomDTO add(RoomDTO dto);
-    public RoomDTO update(RoomDTO dto);
-    public RoomDTO find(String id);
-    public RoomDTO findCode(String code);
-    public List<RoomDTO> all();
+public interface IAreaLogic {
+    public AreaDTO add(AreaDTO dto);
+    public AreaDTO update(AreaDTO dto);
+    public AreaDTO find(String id);
+    public AreaDTO findCode(String code);
+    public List<AreaDTO> all();
     public Boolean delete(String id);
 }

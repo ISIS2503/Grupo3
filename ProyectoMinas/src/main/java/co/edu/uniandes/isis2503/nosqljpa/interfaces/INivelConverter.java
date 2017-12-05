@@ -23,20 +23,20 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.interfaces;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.FloorDTO;
-import co.edu.uniandes.isis2503.nosqljpa.model.entity.FloorEntity;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.NivelDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.NivelEntity;
 import java.util.List;
 
 /**
  *
  * @author ca.mendoza968
  */
-public interface IFloorConverter {
-    public FloorDTO entityToDto(FloorEntity entity);
+public interface INivelConverter {
+    public NivelDTO entityToDto(NivelEntity entity);
 
-    public FloorEntity dtoToEntity(FloorDTO dto);
+    public NivelEntity dtoToEntity(NivelDTO dto);
 
-    public List<FloorDTO> listEntitiesToListDTOs(List<FloorEntity> entities);
+    public List<NivelDTO> listEntitiesToListDTOs(List<NivelEntity> entities);
 
-    public List<FloorEntity> listDTOsToListEntities(List<FloorDTO> dtos);
+    public List<NivelEntity> listDTOsToListEntities(List<NivelDTO> dtos);
 }

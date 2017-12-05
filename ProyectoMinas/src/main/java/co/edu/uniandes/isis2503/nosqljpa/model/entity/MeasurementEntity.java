@@ -43,6 +43,26 @@ public class MeasurementEntity implements Serializable {
     private String name;
     
     private String unit;
+    
+    private double LimiteSup;
+    
+    private double LimiteInf;
+
+    public double getLimiteSup() {
+        return LimiteSup;
+    }
+
+    public void setLimiteSup(double LimiteSup) {
+        this.LimiteSup = LimiteSup;
+    }
+
+    public double getLimiteInf() {
+        return LimiteInf;
+    }
+
+    public void setLimiteInf(double LimiteInf) {
+        this.LimiteInf = LimiteInf;
+    }
 
     public String getId() {
         return id;

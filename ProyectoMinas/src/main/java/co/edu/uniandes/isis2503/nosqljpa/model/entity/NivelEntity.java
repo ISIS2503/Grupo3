@@ -37,8 +37,8 @@ import org.hibernate.annotations.DynamicUpdate;
  * @author ca.mendoza968
  */
 @Entity
-@Table(name = "FLOOR")
-public class FloorEntity implements Serializable {
+@Table(name = "NIVEL")
+public class NivelEntity implements Serializable {
 
     @Id
     private String id;
@@ -50,11 +50,11 @@ public class FloorEntity implements Serializable {
     @ElementCollection
     private List<String> rooms;
 
-    public FloorEntity() {
+    public NivelEntity() {
         this.rooms = new ArrayList();
     }
 
-    public FloorEntity(String id, String name, String code, List<String> rooms) {
+    public NivelEntity(String id, String name, String code, List<String> rooms) {
         this.id = id;
         this.name = name;
         this.code = code;

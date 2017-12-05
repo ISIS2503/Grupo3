@@ -38,8 +38,6 @@ public class RealTimeDataDTO {
     private double promCo2;
     private double promSon;
     private double promLuz;
-    
-
     private String idSensor;
 
     public RealTimeDataDTO() {

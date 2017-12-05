@@ -23,16 +23,16 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.persistence;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.entity.FloorEntity;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.AreaEntity;
 
 /**
  *
  * @author ca.mendoza968
  */
-public class FloorPersistence extends Persistencer<FloorEntity, String>{
+public class AreaPersistence extends Persistencer<AreaEntity, String>{
 
-    public FloorPersistence(){
-        this.entityClass = FloorEntity.class;
+    public AreaPersistence(){
+        this.entityClass = AreaEntity.class;
     }
 
 }

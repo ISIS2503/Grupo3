@@ -21,48 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.nosqljpa.logic;
+package co.edu.uniandes.isis2503.nosqljpa.interfaces;
+
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.NivelDTO;
+import java.util.List;
 
 /**
  *
- * @author alejandro
+ * @author ca.mendoza968
  */
-public class AlertaActuadorIneficiente {
-    
-    private int idSensor;
-    
-    private String zonaSensor;
-    
-    private String mensaje;
-    
-    private Long tiempo;
-
-    public AlertaActuadorIneficiente(int idSensor, String zonaSensor) {
-        tiempo = System.currentTimeMillis();
-        this.idSensor = idSensor;
-        this.zonaSensor = zonaSensor;
-        mensaje = "el sensor con id: "+idSensor+" detecto un actuador ineficiente y se encuentra en la zona: " +zonaSensor;
-        System.out.println(mensaje);
-        enviarCorreo();
-    }
-    
-    public Long getTiempo() {
-        return tiempo;
-    }
-
-    public String getIdSensor() {
-        return ""+idSensor;
-    }
-
-    public String getZonaSensor() {
-        return zonaSensor;
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }    
-
-    private void enviarCorreo() {
-        new Correo(mensaje);
-    }
-}  
+public interface INivelLogic {
+    public NivelDTO add(NivelDTO dto);
+    public NivelDTO update(NivelDTO dto);
+    public NivelDTO find(String id);
+    public NivelDTO findCode(String code);
+    public List<NivelDTO> all();
+    public Boolean delete(String id);
+}
