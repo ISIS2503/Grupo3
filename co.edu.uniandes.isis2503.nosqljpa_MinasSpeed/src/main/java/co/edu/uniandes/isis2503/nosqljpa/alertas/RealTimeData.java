@@ -40,6 +40,15 @@ public class RealTimeData {
     private double promLuz;
     private String idSensor;
 
+    public RealTimeData(Date samplingTime, double promTemp, double promCo2, double promSon, double promLuz, String idSensor) {
+        this.samplingTime = samplingTime;
+        this.promTemp = promTemp;
+        this.promCo2 = promCo2;
+        this.promSon = promSon;
+        this.promLuz = promLuz;
+        this.idSensor = idSensor;
+    }
+
     public Date getSamplingTime() {
         return samplingTime;
     }
