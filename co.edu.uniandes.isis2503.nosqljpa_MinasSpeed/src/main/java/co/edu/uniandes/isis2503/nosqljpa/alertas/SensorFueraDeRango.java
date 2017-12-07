@@ -37,6 +37,7 @@ public class SensorFueraDeRango extends SensorState{
         super(id, code, rtd);
         state= "Fuera de Rango";
         contador = 1;
+        EnviarAlerta();
     }
 
     public void addContador() {
@@ -50,6 +51,11 @@ public class SensorFueraDeRango extends SensorState{
     @Override
     public String getState() {
         return state;
+    }
+
+    private void EnviarAlerta() {
+        AlertaFueraDeRango a = new AlertaFueraDeRango(super.getCode());
+        //TODO post alerta en batch
     }
     
 }

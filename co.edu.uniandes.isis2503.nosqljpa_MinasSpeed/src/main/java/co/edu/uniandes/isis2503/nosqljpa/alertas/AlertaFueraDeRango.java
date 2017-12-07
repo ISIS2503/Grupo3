@@ -25,35 +25,37 @@ package co.edu.uniandes.isis2503.nosqljpa.alertas;
 
 /**
  *
- * @author a.garcia13
+ * @author alejandro
  */
-public class SensorFueraDeLinea extends SensorState {
+public class AlertaFueraDeRango {
     
-    private String state;
+    private String idSensor;
+    
+    private String mensaje;
+    
+    private Long tiempo;
 
-    public SensorFueraDeLinea(String id, String code, RealTimeData rtd) {
-        super(id, code, rtd);
-        state = "Fuera de Linea";
-        enviarNotificacion();
-    }
-
-    @Override
-    public String getState() {
-        return state;
-    }
-
-    @Override
-    public int getContador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void addContador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void enviarNotificacion() {
-        AlertaFueraDeLinea a = new AlertaFueraDeLinea(super.getCode());
+    public AlertaFueraDeRango(String idSensor) {
+        tiempo = System.currentTimeMillis();
+        this.idSensor = idSensor;
+        mensaje = "el sensor con id: "+idSensor+" activo un actuador";
+        System.out.println(mensaje);
+        ActivarActuador();
     }
     
+    public Long getTiempo() {
+        return tiempo;
+    }
+
+    public String getIdSensor() {
+        return idSensor;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }    
+
+    private void ActivarActuador() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
