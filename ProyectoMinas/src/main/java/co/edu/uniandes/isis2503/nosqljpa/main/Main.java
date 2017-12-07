@@ -23,6 +23,7 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.main;
 
+import co.coordinacion.MicroserviceRegistrar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.eclipse.jetty.server.Server;
@@ -40,7 +41,9 @@ public class Main {
             String webappDirLocation = "src/main/webapp/";
             String webPort = System.getenv("PORT");
             if (webPort == null || webPort.isEmpty()) {
-                webPort = "8080";
+               // webPort = "8080";
+                 webPort = MicroserviceRegistrar.MICROSERVICE_PORT+"";
+
             }
             Server server = new Server(Integer.valueOf(webPort));
             WebAppContext root = new WebAppContext();
@@ -49,6 +52,8 @@ public class Main {
             root.setResourceBase(webappDirLocation);
             root.setParentLoaderPriority(true);
             server.setHandler(root);
+             MicroserviceRegistrar.registerMicroservice();   // Incluir esta línea
+            MicroserviceRegistrar.startHeartbeat();         // Incluir esta línea   
             server.start();
             server.join();
         } catch (InterruptedException ex) {

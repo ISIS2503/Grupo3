@@ -12,6 +12,7 @@ co\edu\uniandes\isis2503\nosqljpa\model\entity\MeasurementEntity.class
 co\edu\uniandes\isis2503\nosqljpa\logic\MeasurementLogic.class
 co\edu\uniandes\isis2503\nosqljpa\interfaces\ILimitsLogic.class
 co\edu\uniandes\isis2503\nosqljpa\interfaces\ISensorLogic.class
+co\coordinacion\MicroserviceRegistrar.class
 co\edu\uniandes\isis2503\nosqljpa\auth\CORSFilter.class
 co\edu\uniandes\isis2503\nosqljpa\interfaces\IMeasurementLogic.class
 co\edu\uniandes\isis2503\nosqljpa\model\entity\AreaEntity.class
@@ -35,8 +36,8 @@ co\edu\uniandes\isis2503\nosqljpa\logic\ConsolidatedDataLogic.class
 co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\SensorConverter.class
 co\edu\uniandes\isis2503\nosqljpa\model\dto\model\ConsolidatedDataDTO.class
 co\edu\uniandes\isis2503\nosqljpa\model\entity\LimitsEntity.class
+co\coordinacion\MicroserviceDTO.class
 co\edu\uniandes\isis2503\nosqljpa\logic\LimitsLogic.class
-co\edu\uniandes\isis2503\nosqljpa\service\LimitesService.class
 co\edu\uniandes\isis2503\nosqljpa\interfaces\IConsolidatedDataLogic.class
 co\edu\uniandes\isis2503\nosqljpa\model\dto\converter\LimitsConverter.class
 co\edu\uniandes\isis2503\nosqljpa\logic\SensorLogic.class
