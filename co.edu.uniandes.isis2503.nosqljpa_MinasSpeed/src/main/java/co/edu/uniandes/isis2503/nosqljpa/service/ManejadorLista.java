@@ -27,6 +27,8 @@ import co.edu.uniandes.isis2503.nosqljpa.alertas.ListaLimites;
 import co.edu.uniandes.isis2503.nosqljpa.alertas.ListaSensores;
 import co.edu.uniandes.isis2503.nosqljpa.alertas.RealTimeData;
 import co.edu.uniandes.isis2503.nosqljpa.alertas.Sensor;
+import co.edu.uniandes.isis2503.nosqljpa.alertas.SensorConverter;
+import co.edu.uniandes.isis2503.nosqljpa.alertas.SensorDTO;
 import java.util.ArrayList;
 import javax.ejb.EJB;
 
@@ -43,7 +45,8 @@ class ManejadorLista {
     ArrayList<Sensor> sensores;
 
     public ManejadorLista() {
-        ArrayList<Sensor> sensores = lista.get();
+        lista = new ListaSensores();
+        sensores = lista.get();
     }
 
     void ActualizarSensor(String code, RealTimeData rtd) throws Exception {
@@ -83,8 +86,10 @@ class ManejadorLista {
         ssne.setRtd(rtd);
     }
 
-    Sensor add(Sensor sensor) {
-        sensores.add(sensor);
+    SensorDTO add(SensorDTO sensor) {
+        SensorConverter c = new SensorConverter();
+        Sensor e = c.dtoToEntity(sensor);
+        sensores.add(e);
         return sensor;
     }
 

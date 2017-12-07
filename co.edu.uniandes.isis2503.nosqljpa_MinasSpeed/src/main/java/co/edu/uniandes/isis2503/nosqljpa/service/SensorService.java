@@ -25,6 +25,7 @@ package co.edu.uniandes.isis2503.nosqljpa.service;
 
 import co.edu.uniandes.isis2503.nosqljpa.alertas.RealTimeData;
 import co.edu.uniandes.isis2503.nosqljpa.alertas.Sensor;
+import co.edu.uniandes.isis2503.nosqljpa.alertas.SensorDTO;
 import co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter.Role;
 import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
 import java.util.logging.Level;
@@ -47,7 +48,7 @@ public class SensorService {
     }
 
     @POST
-    public Sensor add(Sensor sensor) {
+    public SensorDTO add(SensorDTO sensor) {
         return manejador.add(sensor);
     }
 

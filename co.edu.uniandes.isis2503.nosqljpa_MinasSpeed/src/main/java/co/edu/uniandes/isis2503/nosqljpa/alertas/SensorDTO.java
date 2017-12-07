@@ -23,78 +23,40 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.alertas;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author a.garcia13
  */
-public class Sensor {
-    
+@XmlRootElement
+public class SensorDTO {
     private String id;
     private String code;
-    private RealTimeData rtd;
+
+    public SensorDTO(String id, String code) {
+        this.id = id;
+        this.code = code;
+    }
     
-    private SensorState current;
-    
-    public Sensor(String id, String code){
-        this.rtd = null;
-        current = new SensorNormal(id, code, rtd);
+    public SensorDTO(){
     }
 
-    Sensor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public void setCurrent(SensorState s){
-        current = s;
-    }
-    
     public String getId() {
-        return current.getCode();
+        return id;
     }
 
     public void setId(String id) {
-        current.setId(id);
+        this.id = id;
     }
 
     public String getCode() {
-        return current.getCode();
+        return code;
     }
 
     public void setCode(String code) {
-        current.setCode(code);
+        this.code = code;
     }
-
-    public RealTimeData getRtd() {
-        return current.getRtd();
-    }
-
-    public void setRtd(RealTimeData rtd) {
-        current.setRtd(rtd);
-    }    
-
-    public int checkTime(){
-        long t = System.currentTimeMillis() - current.getRtd().getSamplingTime().getTime();
-        if (t > 300000) {
-            current = new SensorFueraDeLinea(current.getId(), current.getCode(), current.getRtd());
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-    
-    public String getState(){
-        return current.getState();
-    }
-
-    public void alertaRango() {
-        if(current.getState().equals("Fuera de Rango")){
-            if(current.getContador()==6){
-                current = new SensorActuadorIneficiente(current.getId(), current.getCode(), current.getRtd());
-            }
-        }
-        else current = new SensorFueraDeRango(current.getId(), current.getCode(), current.getRtd());
-    }
-    
 }
