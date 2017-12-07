@@ -21,8 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.nosqljpa.logic;
+package co.edu.uniandes.isis2503.nosqljpa.alertas;
 
+import co.edu.uniandes.isis2503.nosqljpa.alertas.ConnectionPoolCorreos;
+import co.edu.uniandes.isis2503.nosqljpa.alertas.Correo;
+import javax.ejb.EJB;
+import javax.mail.Session;
 import jflex.Out;
 
 /**
@@ -31,13 +35,16 @@ import jflex.Out;
  */
 class AlertaFueraDeLinea {
     
-    private int idSensor;
+    private String idSensor;
     
     private String mensaje;
     
     private Long tiempo;
+    
+    @EJB
+    ConnectionPoolCorreos correos = new ConnectionPoolCorreos();
 
-    public AlertaFueraDeLinea(int idSensor) {
+    public AlertaFueraDeLinea(String idSensor) {
         tiempo = System.currentTimeMillis();
         this.idSensor = idSensor;
         mensaje = "el sensor con id: "+idSensor+" se encuentra fuera de linea ";
@@ -58,6 +65,8 @@ class AlertaFueraDeLinea {
     }    
 
     private void enviarCorreo() {
-        new Correo(mensaje);
+        Session s = correos.checkOut();
+        Correo c =new Correo(mensaje,s);
+        correos.checkIn(s);
     }
 }

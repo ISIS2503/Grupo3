@@ -23,6 +23,9 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.alertas;
 
+import javax.ejb.EJB;
+import javax.mail.Session;
+
 /**
  *
  * @author alejandro
@@ -34,6 +37,9 @@ public class AlertaActuadorIneficiente {
     private String mensaje;
     
     private Long tiempo;
+    
+    @EJB
+    ConnectionPoolCorreos correos = new ConnectionPoolCorreos();
 
     public AlertaActuadorIneficiente(String idSensor) {
         tiempo = System.currentTimeMillis();
@@ -56,6 +62,8 @@ public class AlertaActuadorIneficiente {
     }    
 
     private void enviarCorreo() {
-        new Correo(mensaje);
+        Session s = correos.checkOut();
+        Correo c =new Correo(mensaje,s);
+        correos.checkIn(s);
     }
 }  

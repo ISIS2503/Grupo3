@@ -23,10 +23,13 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.alertas;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author a.garcia13
  */
+@XmlRootElement
 public class Sensor {
     
     private String id;

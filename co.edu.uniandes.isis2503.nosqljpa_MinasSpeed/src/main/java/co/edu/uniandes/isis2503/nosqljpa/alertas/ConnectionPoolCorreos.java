@@ -23,70 +23,53 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.alertas;
 
-import java.util.Date;
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Properties;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 
 /**
  *
  * @author a.garcia13
  */
-@XmlRootElement
-public class RealTimeData {
-    
-    private Date samplingTime;
-    private double promTemp;
-    private double promCo2;
-    private double promSon;
-    private double promLuz;
-    private String idSensor;
+public class ConnectionPoolCorreos extends ObjectPoolCorreos<Session> {
 
-    public Date getSamplingTime() {
-        return samplingTime;
+    public ConnectionPoolCorreos() {
+        super();
+        try {
+            Class.forName("Session").newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setSamplingTime(Date samplingTime) {
-        this.samplingTime = samplingTime;
+    @Override
+    protected Session create() {
+        final String username = "alejandrogf95@gmail.com";
+        final String password = "Ka";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+        return session;
     }
 
-    public double getPromTemp() {
-        return promTemp;
+    @Override
+    public void expire(Session o) {
+        //No es necesario
     }
 
-    public void setPromTemp(double promTemp) {
-        this.promTemp = promTemp;
+    @Override
+    public boolean validate(Session o) {
+        return true;
     }
 
-    public double getPromCo2() {
-        return promCo2;
-    }
-
-    public void setPromCo2(double promCo2) {
-        this.promCo2 = promCo2;
-    }
-
-    public double getPromSon() {
-        return promSon;
-    }
-
-    public void setPromSon(double promSon) {
-        this.promSon = promSon;
-    }
-
-    public double getPromLuz() {
-        return promLuz;
-    }
-
-    public void setPromLuz(double promLuz) {
-        this.promLuz = promLuz;
-    }
-
-    public String getIdSensor() {
-        return idSensor;
-    }
-
-    public void setIdSensor(String idSensor) {
-        this.idSensor = idSensor;
-    }
-    
-    
 }
