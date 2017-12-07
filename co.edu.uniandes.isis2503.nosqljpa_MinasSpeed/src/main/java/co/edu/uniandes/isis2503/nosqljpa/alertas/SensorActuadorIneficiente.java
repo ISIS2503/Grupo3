@@ -53,7 +53,7 @@ public class SensorActuadorIneficiente extends SensorState {
     }
 
     private void enviarNotificacion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        AlertaActuadorIneficiente a = new AlertaActuadorIneficiente(super.getCode());
     }
     
 }

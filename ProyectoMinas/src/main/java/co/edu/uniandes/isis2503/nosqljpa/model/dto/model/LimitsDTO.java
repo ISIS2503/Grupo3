@@ -44,6 +44,17 @@ public class LimitsDTO {
     
     double LimiteInf;
 
+    public LimitsDTO(String tipo, double ValorMax, double ValorMin, double VarDiaria, double LimiteSup, double LimiteInf) {
+        this.tipo = tipo;
+        this.ValorMax = ValorMax;
+        this.ValorMin = ValorMin;
+        this.VarDiaria = VarDiaria;
+        this.LimiteSup = LimiteSup;
+        this.LimiteInf = LimiteInf;
+    } 
+    
+    public LimitsDTO(){}
+    
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }

@@ -89,11 +89,4 @@ public class SensorDTO {
     public void addRealTimeData(String id) {
         this.realTimeData.add(id);
     }
-
-    public void updateMeasurement(String id) {
-        for(String x: measurements){
-            measurements.remove(x);
-        }
-        this.measurements.add(id);
-    }
 }

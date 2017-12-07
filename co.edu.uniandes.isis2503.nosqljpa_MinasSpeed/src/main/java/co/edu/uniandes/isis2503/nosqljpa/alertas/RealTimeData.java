@@ -24,11 +24,13 @@
 package co.edu.uniandes.isis2503.nosqljpa.alertas;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author a.garcia13
  */
+@XmlRootElement
 public class RealTimeData {
     
     private Date samplingTime;

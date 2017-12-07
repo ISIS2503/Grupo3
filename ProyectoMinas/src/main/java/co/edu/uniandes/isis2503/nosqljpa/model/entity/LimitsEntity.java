@@ -23,26 +23,45 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author a.garcia13
  */
-public class LimitsEntity {
+@Entity
+@Table(name = "LIMITES")
+public class LimitsEntity implements Serializable {
     
-    String tipo;
+    @Id       
+    private String tipo;
     
-    double ValorMax;
+    private double ValorMax;
     
-    double ValorMin;
+    private double ValorMin;
     
-    double VarDiaria;
+    private double VarDiaria;
     
-    double LimiteSup;
+    private double LimiteSup;
+
+    public LimitsEntity() {
+    }
+
+    public LimitsEntity(String tipo, double ValorMax, double ValorMin, double VarDiaria, double LimiteSup, double LimiteInf) {
+        this.tipo = tipo;
+        this.ValorMax = ValorMax;
+        this.ValorMin = ValorMin;
+        this.VarDiaria = VarDiaria;
+        this.LimiteSup = LimiteSup;
+        this.LimiteInf = LimiteInf;
+    } 
     
-    double LimiteInf;
+    private double LimiteInf;
 
     public void setTipo(String tipo) {
         this.tipo = tipo;

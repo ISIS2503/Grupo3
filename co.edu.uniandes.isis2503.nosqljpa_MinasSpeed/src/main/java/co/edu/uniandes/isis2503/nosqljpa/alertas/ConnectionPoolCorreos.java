@@ -23,37 +23,53 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.alertas;
 
+import java.util.Properties;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+
 /**
  *
  * @author a.garcia13
  */
-public class SensorFueraDeLinea extends SensorState {
-    
-    private String state;
+public class ConnectionPoolCorreos extends ObjectPoolCorreos<Session> {
 
-    public SensorFueraDeLinea(String id, String code, RealTimeData rtd) {
-        super(id, code, rtd);
-        state = "Fuera de Linea";
-        enviarNotificacion();
+    public ConnectionPoolCorreos() {
+        super();
+        try {
+            Class.forName("Session").newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public String getState() {
-        return state;
+    protected Session create() {
+        final String username = "alejandrogf95@gmail.com";
+        final String password = "Ka";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+        return session;
     }
 
     @Override
-    public int getContador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void expire(Session o) {
+        //No es necesario
     }
 
     @Override
-    public void addContador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean validate(Session o) {
+        return true;
     }
 
-    private void enviarNotificacion() {
-        AlertaFueraDeLinea a = new AlertaFueraDeLinea(super.getCode());
-    }
-    
 }

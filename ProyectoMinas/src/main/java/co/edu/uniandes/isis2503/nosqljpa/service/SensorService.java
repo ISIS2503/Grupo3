@@ -25,15 +25,12 @@ package co.edu.uniandes.isis2503.nosqljpa.service;
 
 import co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter.Role;
 import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.ILimitsLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IMeasurementLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.ISensorLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IRealTimeDataLogic;
-import co.edu.uniandes.isis2503.nosqljpa.logic.LimitsLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.MeasurementLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.SensorLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.RealTimeDataLogic;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.LimitsDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.MeasurementDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.SensorDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RealTimeDataDTO;
@@ -61,13 +58,11 @@ public class SensorService {
     private final ISensorLogic sensorLogic;
     private final IRealTimeDataLogic realtimedataLogic;
     private final IMeasurementLogic measurementLogic;
-    private final ILimitsLogic limitsLogic;
 
     public SensorService() {
         this.sensorLogic = new SensorLogic();
         this.realtimedataLogic = new RealTimeDataLogic();
         this.measurementLogic = new MeasurementLogic();
-        limitsLogic = new LimitsLogic();
     }
 
     @POST
@@ -108,7 +103,6 @@ public class SensorService {
     public MeasurementDTO updateMeasurement(@PathParam("code") String code, MeasurementDTO dto) {
         SensorDTO sensor = sensorLogic.findCode(code);
         MeasurementDTO result = measurementLogic.update(dto);
-        sensor.updateMeasurement(dto.getId());
         sensorLogic.update(sensor);
         return result;
     } 
@@ -117,24 +111,6 @@ public class SensorService {
     @PUT
     public SensorDTO update(SensorDTO dto) {
         return sensorLogic.update(dto);
-    }
-    
-    @POST
-    @Path("/limits")
-    public LimitsDTO addLimit(LimitsDTO dto){
-        return limitsLogic.add(dto);
-    }
-    
-    @PUT
-    public LimitsDTO update(LimitsDTO dto) {
-        return limitsLogic.update(dto);
-    }
-    
-    
-    @GET
-    @Path("/limits")
-    public List<LimitsDTO> getLimits(){
-        return limitsLogic.all();
     }
 
     @GET
